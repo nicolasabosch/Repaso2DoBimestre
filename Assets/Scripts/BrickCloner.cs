@@ -7,9 +7,12 @@ public class BrickCloner : MonoBehaviour
 {
     public GameObject brickPrefab;
     public float xOffset;
+    int counter = 0;
+    public Text usrOffset;
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -19,12 +22,22 @@ public class BrickCloner : MonoBehaviour
     }
     public void CloneBrick()
     {
-        GameObject clon;
+        xOffset = float.Parse(usrOffset.text);
+        if (counter == 0)
+        {
+            xOffset = float.Parse(usrOffset.text);
 
-        clon = Instantiate(brickPrefab);
-        clon.transform.position = new Vector3(xOffset, 0, 0);
-        Destroy(clon, 2);
-        xOffset += 1.1f;
+        }
+        if (counter < 5)
+        {
+
+            GameObject clon;
+            clon = Instantiate(brickPrefab);
+            clon.transform.position = new Vector3(float.Parse(usrOffset.text), 0, 0);
+            Destroy(clon, 2);
+
+            counter++;
+        }
 
     }
 }
